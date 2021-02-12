@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  user-admin:
+    image: users-api:v1
+    ports:
+      - "5001:5000"
+    depends_on:
+      - user-db
+
+  user-db:
+    image: mysql:5.7.24
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: yolo
+      MYSQL_DATABASE: users
+
+volumes:
+  mysql-data:
